@@ -14,5 +14,6 @@ import lombok.Setter;
 public class CreateAccount {
     @NotBlank
     private String username;
+    @NotBlank
     private String description;
 }

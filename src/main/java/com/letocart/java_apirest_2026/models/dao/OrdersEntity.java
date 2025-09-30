@@ -7,32 +7,23 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity(name = "account")
+@Entity(name = "orders")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class AccountEntity {
+public class OrdersEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long accountId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long ordersId;
 
-    @OneToOne
-    @JoinColumn(name="address_id")
-    private AddressEntity address;
+    @ManyToOne
+    @JoinColumn(name = "account_id")
+    private AccountEntity account;
 
-    @OneToMany(mappedBy = "account")
-    private List<OrdersEntity> orders;
-
-    private String username;
-
-    private String description;
 }
-// TODO create create DTO and classic DTO
